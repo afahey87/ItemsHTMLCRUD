@@ -32,7 +32,7 @@ namespace Alerts_and_Windows
         public void checkItemsPageHasLoaded()
         {
             waitForPageUntillElementIsVissable(By.Id("walkme-proxy-iframe"), 10);
-            Assert.True(driver.Url.Contains("items"));
+            Assert.True(driver.Url.Contains("items"));      // Verify page is loaded
            
         }
 
@@ -40,31 +40,31 @@ namespace Alerts_and_Windows
         public void ItemsCRUD()
         {
             //      Create
-            waitForPageUntillElementIsVissable(By.XPath("/html/body/div/div[2]/search-results/div/div[2]/div/div[1]/table/thead/tr[1]/th[3]"), 10);
-            driver.FindElement(By.XPath("/html/body/div/div[1]/app-ribbon/div/div[2]/ul/li[3]/button[1]/div")).Click();
+            waitForPageUntillElementIsVissable(By.XPath("/html/body/div/div[2]/search-results/div/div[2]/div/div[1]/table/thead/tr[1]/th[3]"), 10); // Wait for element to load before test starts.
+            driver.FindElement(By.XPath("/html/body/div/div[1]/app-ribbon/div/div[2]/ul/li[3]/button[1]/div")).Click();     // Click Add button
             Assert.True(driver.Url.Contains("Add"));
             waitOnPage(1);
-            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/form/app-item-info-bar/div/div[1]/input")).SendKeys(Keys.Return);
+            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/form/app-item-info-bar/div/div[1]/input")).SendKeys(Keys.Return);   // Press return key, This auto generates next number for the Item
             waitOnPage(1);
             driver.FindElement(By.Name("itemDescription")).SendKeys("Autom8");
             waitOnPage(1);
-            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/app-footer/div/div/div/button[1]")).Click();
+            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/app-footer/div/div/div/button[1]")).Click();    // Click save
             waitOnPage(1);
-            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[2]/form/div/input")).SendKeys("Autom8");
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[2]/form/div/input")).SendKeys("Autom8");     // Reason for save
             waitForPageUntillElementIsVissable(By.XPath("/html/body/div[1]/div/div/div/div[1]/div/div"), 10);
-            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/div/div/button")).Click();
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/div/div/button")).Click();    // Confirm Save
             //      Update
             waitOnPage(1);
-            driver.FindElement(By.Name("ManufacturerId")).SendKeys("Dell");
+            driver.FindElement(By.Name("ManufacturerId")).SendKeys("Dell"); // Type in Dell
             waitOnPage(1);
-            driver.FindElement(By.Name("ManufacturerId")).SendKeys(Keys.Return);
-            driver.FindElement(By.Name("IsTangible")).Click();
-            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/app-footer/div/div/div/button[1]")).Click();
-            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/div/div/button")).Click();
+            driver.FindElement(By.Name("ManufacturerId")).SendKeys(Keys.Return); // Press return key
+            driver.FindElement(By.Name("IsTangible")).Click(); // Click IsTangiable Radio button
+            driver.FindElement(By.XPath("/html/body/div/div[2]/item-manager/app-footer/div/div/div/button[1]")).Click();    // Click Save
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/div/div/button")).Click();    // Confrim Save
             //      Delete
             waitOnPage(2);
-            driver.FindElement(By.XPath("/html/body/div/div[1]/app-ribbon/div/div[2]/ul/li[3]/button[2]")).Click();
-            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/button[1]")).Click();
+            driver.FindElement(By.XPath("/html/body/div/div[1]/app-ribbon/div/div[2]/ul/li[3]/button[2]")).Click(); //Click Delet button
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div[3]/button[1]")).Click(); //Confirm delete
 
         }
 
